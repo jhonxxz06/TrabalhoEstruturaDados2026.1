@@ -5,45 +5,74 @@ public class AgendaTelefonica {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        limparTela();
+
         System.out.println("=== AGENDA TELEFÔNICA (BST) ===");
-        int opcao;
-        do {
+        while(true){
             exibirMenu();
-            opcao = lerInteiro("Opção: ");
+            System.out.println("Insira a opção desejada");
+            int opcao = scanner.nextInt();
             System.out.println();
             switch (opcao) {
-                case 1 -> inserirContato();
-                case 2 -> buscarContato();
-                case 3 -> removerContato();
-                case 4 -> arvore.exibirEmOrdem();
-                case 5 -> arvore.exibirPreOrdem();
-                case 6 -> arvore.exibirPosOrdem();
-                case 7 -> exibirPrimeiro();
-                case 8 -> exibirUltimo();
-                case 9 -> exibirQuantidade();
-                case 10 -> exibirAltura();
-                case 11 -> System.out.println("Encerrando o sistema. Até logo!");
-                default -> System.out.println("Opção inválida. Tente novamente.");
+                case 1:
+                    inserirContato();
+                    break;
+                case 2:
+                    buscarContato();
+                    break;
+                case 3:
+                    removerContato();
+                    break;
+                case 4:
+                    arvore.exibirEmOrdem();
+                    break;
+                case 5:
+                    arvore.exibirPreOrdem();
+                    break;
+                case 6:
+                    arvore.exibirPosOrdem();
+                    break;
+                case 7:
+                    exibirPrimeiro();
+                    break;
+                case 8:
+                    exibirUltimo();
+                    break;
+                case 9:
+                    exibirQuantidade();
+                    break;
+                case 10:
+                    exibirAltura();
+                    break;
+                case 11:
+                    System.out.println("Encerrando o sistema. Até logo!");
+                    scanner.close();
+                    return;
+                default:
+                    System.out.println("Opção inválida. Tente novamente.");
+                    pausar();
+                    continue;
             }
-            if (opcao != 11) pausar();
-        } while (opcao != 11);
-        scanner.close();
+            pausar();
+        }
     }
 
     private static void inserirContato() {
         System.out.println("--- INSERIR CONTATO ---");
         String nome = lerString("Nome: ");
-        if (nome.isEmpty()) { System.out.println("O nome não pode ser vazio."); 
+
+        if (nome.isEmpty()) {
+            System.out.println("O nome não pode ser vazio.");
             return; 
         }
 
         String telefone = lerString("Telefone: ");
-        if (telefone.isEmpty()){System.out.println("Telefone nao pode estar vazio");
+        if (telefone.isEmpty()){
+            System.out.println("Telefone nao pode estar vazio");
             return;
         }
         String email = lerString("E-mail: ");
-        if (email.isEmpty()){System.out.println("Email nao pode estar vazio");
+        if (email.isEmpty()){
+            System.out.println("Email nao pode estar vazio");
             return;
         }
 
@@ -54,7 +83,8 @@ public class AgendaTelefonica {
 
         if (arvore.inserir(new Contato(nome, telefone, email, cidade))) {
             System.out.println("\nContato \"" + nome + "\" inserido com sucesso!");
-        } else {
+        }
+        else {
             System.out.println("\nErro: Já existe um contato com o nome \"" + nome + "\".");
         }
     }
@@ -70,13 +100,20 @@ public class AgendaTelefonica {
         System.out.println("--- REMOVER CONTATO ---");
         String nome = lerString("Nome: ");
         Contato encontrado = arvore.buscar(nome);
-        if (encontrado == null) { System.out.println("\nContato \"" + nome + "\" não encontrado."); return; }
+
+        if (encontrado == null) {
+            System.out.println("\nContato \"" + nome + "\" não encontrado.");
+            return;
+        }
+
         System.out.println("\nContato a remover:\n" + encontrado);
         System.out.print("\nConfirma a remoção? (s/n): ");
+
         if (scanner.nextLine().trim().equalsIgnoreCase("s")) {
             arvore.remover(nome);
             System.out.println("\nContato \"" + nome + "\" removido com sucesso!");
-        } else {
+        }
+        else {
             System.out.println("\nRemoção cancelada.");
         }
     }
@@ -97,51 +134,44 @@ public class AgendaTelefonica {
 
 
 
-    private static void exibirQuantidade() { System.out.println("Total de contatos: " + arvore.quantidade()); }
+    private static void exibirQuantidade() {
+        System.out.println("Total de contatos: " + arvore.quantidade());
+    }
 
 
-    private static void exibirAltura() { System.out.println(arvore.estaVazia() ? "Árvore vazia (altura = -1)" : "Altura da árvore: " + arvore.altura()); }
+    private static void exibirAltura() {
+        System.out.println(arvore.estaVazia() ? "Árvore vazia (altura = -1)" : "Altura da árvore: " + arvore.altura());
+    }
 
 
     private static void exibirMenu() {
-        System.out.println("\nMenu principal:\n1. Inserir contato\n2. Buscar contato\n3. Remover contato\n4. Exibir (Em Ordem alfabética)\n5. Exibir (Pré-Ordem)\n6. Exibir (Pós-Ordem)\n7. Primeiro contato alfabeticamente\n8. Último contato alfabeticamente\n9. Total de contatos\n10. Altura da árvore\n11. Sair");
+        System.out.println("\nMenu principal:\n1. Inserir contato" +
+                "\n2. Buscar contato" +
+                "\n3. Remover contato" +
+                "\n4. Exibir (Em Ordem alfabética)" +
+                "\n5. Exibir (Pré-Ordem)" +
+                "\n6. Exibir (Pós-Ordem)" +
+                "\n7. Primeiro contato alfabeticamente" +
+                "\n8. Último contato alfabeticamente" +
+                "\n9. Total de contatos" +
+                "\n10. Altura da árvore" +
+                "\n11. Sair");
     }
 
 
 
-    private static String lerString(String prompt) { System.out.print(prompt); return scanner.nextLine().trim(); }
-
-    private static int lerInteiro(String prompt) {
-        while (true) {
-            System.out.print(prompt);
-            try { return Integer.parseInt(scanner.nextLine().trim()); } 
-            catch (NumberFormatException e) { System.out.println("Digite um número inteiro válido."); }
-        }
+    private static String lerString(String prompt) {
+        System.out.print(prompt);
+        return scanner.nextLine().trim();
     }
 
-    
-    private static void pausar() { System.out.print("\nPressione ENTER para continuar..."); scanner.nextLine(); limparTela(); }
+    private static void pausar() {
+        System.out.print("\nPressione ENTER para continuar...");
+        scanner.nextLine();
+    }
 
-    private static void limparTela() { System.out.print("\033[H\033[2J"); System.out.flush(); }
 }
 
-
-class Contato {
-    private final String nome, telefone, email, cidade;
-
-    public Contato(String nome, String telefone, String email, String cidade) {
-        this.nome = nome; 
-        this.telefone = telefone; 
-        this.email = email; 
-        this.cidade = cidade;
-    }
-
-    public String getNome() { return nome; }
-    @Override
-    public String toString() {
-        return String.format("Nome    : %s\nTelefone: %s\nE-mail  : %s\nCidade  : %s\n", nome, telefone, email, cidade);
-    }
-}
 
 
 

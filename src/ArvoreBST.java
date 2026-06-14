@@ -52,7 +52,8 @@ public class ArvoreBST {
     }
 
     private No removerRecursivo(No noAtual, String nomeParaRemover) {
-        if (noAtual == null) return null;
+        if (noAtual == null)
+            return null;
         
         int ordemAlfabetica = nomeParaRemover.compareToIgnoreCase(noAtual.contato.getNome());
         
@@ -137,7 +138,7 @@ public class ArvoreBST {
 
     public void exibirPosOrdem() { 
         System.out.println("\n--- PÓS-ORDEM ---"); 
-        int[] indexador = {0}; 
+        int[] indexador = {0} ;
         percursoPosOrdem(raiz, indexador); 
     }
 
