@@ -1,11 +1,8 @@
 public class No {
-    ListaContato contato;
-    No esquerdo;
-    No direito;
-
-    public No(ListaContato contato) {
+    Contato contato;
+    No esquerdo, direito;
+    public No(Contato contato) {
         this.contato = contato;
-        this.esquerdo = null;
-        this.direito = null;
     }
 }
+
