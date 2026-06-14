@@ -4,5 +4,6 @@ public class No {
     public No(Contato contato) {
         this.contato = contato;
     }
+
 }
 

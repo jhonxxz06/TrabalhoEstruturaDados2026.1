@@ -11,6 +11,7 @@ public class ArvoreBST {
         return true; 
     }
 
+
     private No inserirRecursivo(No noAtual, Contato novoContato) {
         if (noAtual == null) {
             return new No(novoContato); 
