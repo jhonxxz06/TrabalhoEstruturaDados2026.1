@@ -11,6 +11,7 @@ public class AgendaTelefonica {
             exibirMenu();
             System.out.println("Insira a opção desejada");
             int opcao = scanner.nextInt();
+            scanner.nextLine();
             System.out.println();
             switch (opcao) {
                 case 1:
