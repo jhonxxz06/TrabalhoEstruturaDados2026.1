@@ -1,7 +1,7 @@
 import java.util.Scanner;
 
 public class AgendaTelefonica {
-    private static final ArvoreBST arvore = new ArvoreBST();
+    private static final ArvoreBB arvore = new ArvoreBB();
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {

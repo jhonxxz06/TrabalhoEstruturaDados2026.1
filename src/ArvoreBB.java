@@ -1,4 +1,4 @@
-public class ArvoreBST {
+public class ArvoreBB {
     private No raiz;
 
     public boolean estaVazia() { 
