@@ -6,7 +6,7 @@ public class ArvoreBST {
     }
 
     public boolean inserir(Contato novoContato) { 
-        if (buscar(novoContato.getNome()) != null) return false; // Evita nomes repetidos
+        if (buscar(novoContato.getNome()) != null) return false; 
         raiz = inserirRecursivo(raiz, novoContato); 
         return true; 
     }
