@@ -6,7 +6,7 @@ public class AgendaTelefonica {
 
     public static void main(String[] args) {
 
-        System.out.println("=== AGENDA TELEFÔNICA (BST) ===");
+        System.out.println("=== AGENDA TELEFÔNICA ===");
         while(true){
             exibirMenu();
             System.out.println("Insira a opção desejada");
